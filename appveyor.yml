@@ -4,7 +4,7 @@ environment:
 ervices:
   - mysql
 before_install:
-  - echo "{\"mysql\": {\"user\": \"root\",\"password\": \"Password12!\",\"database\": \"test\",\"connectionLimit\": 10}}" > config/default.json
+  - echo '{"mysql":{"user":"root","password":"Password12!","database":"test","connectionLimit":10}}' > config/default.json
   - mysql -u root -pPassword12! -e 'CREATE DATABASE IF NOT EXISTS test;'
 install:
   - ps: Install-Product node $env:nodejs_version

@@ -5,7 +5,7 @@ node_js:
 services:
   - mysql
 before_install:
-  - echo "{\"mysql\": {\"user\": \"travis\",\"database\": \"test\",\"connectionLimit\": 10}}" > config/default.json
+  - echo '{"mysql":{"user":"travis","database":"test","connectionLimit":10}}' > config/default.json
   - mysql -u travis -e 'CREATE DATABASE IF NOT EXISTS test;'
 script:
   - npm run lint
