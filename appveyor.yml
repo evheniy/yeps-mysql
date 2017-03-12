@@ -14,8 +14,7 @@ services:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - echo '{"mysql":{"user":"root","password":"Password12!","database":"test","connectionLimit":10}}' > config/default.json
-  - cat config/default.json
+  - echo {"mysql":{"user":"root","password":"Password12!","database":"test","connectionLimit":10}} > config/default.json
   - npm install
 
 before_test:
