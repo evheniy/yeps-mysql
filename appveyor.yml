@@ -3,11 +3,10 @@ environment:
     - nodejs_version: "7.7"
 services:
   - mysql
-before_install:
-  - echo '{"mysql":{"user":"root","password":"Password12!","database":"test","connectionLimit":10}}' > config/default.json
-  - mysql -u root -pPassword12! -e 'CREATE DATABASE IF NOT EXISTS test;'
 install:
   - ps: Install-Product node $env:nodejs_version
+    - echo '{"mysql":{"user":"root","password":"Password12!","database":"test","connectionLimit":10}}' > config/default.json
+    - mysql -u root -pPassword12! -e 'CREATE DATABASE IF NOT EXISTS test;'
   - npm install
 test_script:
   - node --version
