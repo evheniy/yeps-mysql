@@ -77,7 +77,7 @@ config/default.json
             pool.releaseConnection(connection);        
 
         } catch (error) {
-            logger.error
+            logger.error(error);
         }
     };
     
