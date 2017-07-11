@@ -14,7 +14,7 @@
     "clear": "rimraf coverage",
     "precommit": "npm run lint && npm test",
     "prepush": "npm run lint && npm test",
-    "db:start": "docker run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql:latest",
+    "db:start": "docker run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=yeps mysql:latest",
     "db:stop": "docker rm -f mysql"
   },
   "repository": {
