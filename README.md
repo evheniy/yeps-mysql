@@ -83,13 +83,6 @@ config/default.json
     
 ## Links
 
-* [yeps](https://github.com/evheniy/yeps) - YEPS
-* [yeps-benchmark](https://github.com/evheniy/yeps-benchmark) - performance comparison koa2, express and node http
-* [yeps-router](https://github.com/evheniy/yeps-router) - YEPS promise based router
-* [yeps-error](https://github.com/evheniy/yeps-error) - YEPS 404/500 error handler
-* [yeps-logger](https://github.com/evheniy/yeps-logger) - YEPS Async logger - winston
-* [yeps-mysql](https://github.com/evheniy/yeps-mysql) - YEPS promise based mysql client
-* [yeps-boilerplate](https://github.com/evheniy/yeps-boilerplate) - YEPS app boilerplate
-* [yeps-express-wrapper](https://github.com/evheniy/yeps-express-wrapper) - YEPS express wrapper
+* [YEPS documentation](http://yeps.info/)
 * [promise-mysql](https://github.com/lukeb-uk/node-promise-mysql) - promise based mysql client
 * [config](https://github.com/lorenwest/node-config) - node.js config

@@ -1,12 +1,12 @@
 language: node_js
 node_js:
-  - "7.6"
-  - "7.7"
+  - "7"
+  - "8"
 services:
   - mysql
 before_install:
-  - echo '{"mysql":{"user":"travis","database":"test","connectionLimit":10}}' > config/default.json
-  - mysql -u travis -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - echo '{"mysql":{"user":"travis","database":"yeps","connectionLimit":10}}' > config/default.json
+  - mysql -u travis -e 'CREATE DATABASE IF NOT EXISTS yeps;'
 script:
   - npm run lint
   - npm run test
