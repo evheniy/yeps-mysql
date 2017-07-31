@@ -3,10 +3,10 @@ environment:
   matrix:
     - nodejs_version: "8"
 install:
+  - ps: Install-Product node $env:nodejs_version
   - docker pull charmingsteve/windows-mysql
   - npm install
   - docker run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=yeps charmingsteve/windows-mysql
-  - node -e "setTimeout(()=>1, 5000)"
 test_script:
   - docker version
   - node --version
