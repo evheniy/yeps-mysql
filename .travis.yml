@@ -9,6 +9,7 @@ before_install:
   - sudo service mysql stop
   - npm install
   - npm run db:start
+  - node -e "setTimeout(()=>1, 5000)"
 script:
   - docker version
   - node --version
