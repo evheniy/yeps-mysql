@@ -22,6 +22,7 @@ before_test:
   - mysqladmin --host=%MYSQL_HOST% --user=%MYSQL_USER% --password=%MYSQL_PASSWORD% create %MYSQL_DATABASE%
 
 test_script:
+  - docker version
   - mysql --version
   - node --version
   - npm --version
