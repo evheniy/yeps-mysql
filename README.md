@@ -59,12 +59,44 @@ config/default.json
     ]);
     
     app.then(async ctx => {
+        const rows = await ctx.mysql.query('select * from users;');
+    });
+    
+And with connection:
+
+    const App = require('yeps');
+    const app = new App();
+    const error = require('yeps-error');
+    const logger = require('yeps-logger');
+    
+    const mysql = require('yeps-mysql');
+    
+    app.all([
+        mysql(),
+        error(),
+        logger()
+    ]);
+    
+    app.then(async ctx => {
         const connection = await ctx.mysql.getConnection();
         const rows = await connection.query('select * from users;');
         ctx.mysql.releaseConnection(connection);
     });
     
 ### In module
+
+    const pool = require('yeps-mysql/pool');
+    const logger = require('yeps-logger/logger');
+    
+    async () => {
+        try {
+            const rows = await pool.query('select * from users;');
+        } catch (error) {
+            logger.error(error);
+        }
+    };
+    
+And with connection:
 
     const pool = require('yeps-mysql/pool');
     const logger = require('yeps-logger/logger');
@@ -80,6 +112,35 @@ config/default.json
             logger.error(error);
         }
     };
+    
+### Transactions
+
+    const App = require('yeps');
+    const app = new App();
+    const error = require('yeps-error');
+    const logger = require('yeps-logger');
+    
+    const mysql = require('yeps-mysql');
+    
+    app.all([
+        mysql(),
+        error(),
+        logger()
+    ]);
+    
+    app.then(async ctx => {
+        const connection = await ctx.mysql.getConnection();
+        
+        try {
+            await connection.beginTransaction()
+            const rows = await connection.query('delete from users;');
+            await connection.commit();
+        } catch (error) {
+            await connection.rollback();
+        } finally {
+            ctx.mysql.releaseConnection(connection);
+        }
+    });
     
 ## Links
 
