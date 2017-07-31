@@ -6,6 +6,7 @@ node_js:
 services:
   - docker
 before_install:
+  - sudo service mysql stop
   - npm install
   - npm run db:start
 script:
