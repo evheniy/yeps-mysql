@@ -11,7 +11,6 @@ before_install:
   - npm run db:start
 script:
   - docker version
-  - mysql --version
   - node --version
   - npm --version
   - npm run lint
