@@ -7,7 +7,7 @@ const Router = require('yeps-router');
 const mysql = require('..');
 const pool = require('../pool');
 
-const expect = chai.expect;
+const { expect } = chai;
 
 chai.use(chaiHttp);
 let app;
@@ -27,6 +27,10 @@ describe('YEPS mysql test', () => {
 
   afterEach(() => {
     server.close();
+  });
+
+  after(() => {
+    pool.end();
   });
 
   it('should test middleware', async () => {

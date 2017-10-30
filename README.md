@@ -46,35 +46,43 @@ config/default.json
 ### Middleware
 
     const App = require('yeps');
-    const app = new App();
+    
     const error = require('yeps-error');
     const logger = require('yeps-logger');
+    const server = require('yeps-server');
     
     const mysql = require('yeps-mysql');
     
+    const app = new App();
+    
     app.all([
-        mysql(),
         error(),
-        logger()
+        logger(),
+        mysql(),
     ]);
     
     app.then(async ctx => {
         const rows = await ctx.mysql.query('select * from users;');
     });
     
+    server.createHttpServer(app);
+    
 And with connection:
 
     const App = require('yeps');
-    const app = new App();
+    
     const error = require('yeps-error');
     const logger = require('yeps-logger');
+    const server = require('yeps-server');
     
     const mysql = require('yeps-mysql');
     
+    const app = new App();
+    
     app.all([
-        mysql(),
         error(),
-        logger()
+        logger(),
+        mysql(),
     ]);
     
     app.then(async ctx => {
@@ -82,6 +90,8 @@ And with connection:
         const rows = await connection.query('select * from users;');
         ctx.mysql.releaseConnection(connection);
     });
+    
+    server.createHttpServer(app);
     
 ### In module
 
@@ -103,11 +113,9 @@ And with connection:
     
     async () => {
         try {
-            
             const connection = await pool.getConnection();
             const rows = await connection.query('select * from users;');
-            pool.releaseConnection(connection);        
-
+            pool.releaseConnection(connection);
         } catch (error) {
             logger.error(error);
         }
@@ -116,16 +124,19 @@ And with connection:
 ### Transactions
 
     const App = require('yeps');
-    const app = new App();
+   
     const error = require('yeps-error');
     const logger = require('yeps-logger');
+    const server = require('yeps-server');
     
     const mysql = require('yeps-mysql');
     
+    const app = new App();
+    
     app.all([
-        mysql(),
         error(),
-        logger()
+        logger(),
+        mysql(),
     ]);
     
     app.then(async ctx => {
@@ -142,8 +153,13 @@ And with connection:
         }
     });
     
-## Links
+    server.createHttpServer(app);
+    
 
-* [YEPS documentation](http://yeps.info/)
+#### [YEPS documentation](http://yeps.info/)
+
+
+#### Dependencies:
+
 * [promise-mysql](https://github.com/lukeb-uk/node-promise-mysql) - promise based mysql client
 * [config](https://github.com/lorenwest/node-config) - node.js config
